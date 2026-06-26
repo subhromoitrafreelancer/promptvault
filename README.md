@@ -92,7 +92,7 @@ The frontend is static HTML/JS/CSS. Open files directly from `frontend/html/` in
 ```
 promptvault/
 ├── backend/
-│   ├── src/main/java/com/promptvault/
+│   ├── src/main/java/com/anansu/promptvault/
 │   │   ├── config/          SecurityConfig, DataSeeder
 │   │   ├── controller/      AuthController, PromptController, CategoryController, AdminController
 │   │   ├── dto/             Request + Response records
@@ -116,3 +116,49 @@ promptvault/
 ├── ARCHITECTURE.md
 └── DEVLOG.md
 ```
+
+---
+
+## Enterprise upgrade options
+
+The current version is a complete, deployable MVP built for speed and portability (H2, JWT, Docker). The following upgrades are available for production or enterprise deployments.
+
+### Infrastructure and database
+
+| Upgrade | What changes |
+|---------|-------------|
+| **PostgreSQL / MySQL** | Swap the H2 datasource; the codebase is already DB-agnostic (pure JPQL, Flyway migrations). Add the JDBC driver, update `application.properties`, add a new Flyway migration for any dialect-specific adjustments. |
+| **Supabase** | Use Supabase's managed PostgreSQL as the datasource. Optionally adopt Supabase Auth to replace the hand-rolled JWT layer, and Supabase Storage for future file attachments. |
+| **Cloud deployment** | Package for AWS ECS / GCP Cloud Run / Azure Container Apps. Externalise secrets to AWS Secrets Manager, GCP Secret Manager, or Azure Key Vault. Add a managed load balancer in front of the nginx container. |
+
+### Authentication and identity
+
+| Upgrade | What changes |
+|---------|-------------|
+| **Keycloak** | Replace the current JWT implementation with a Keycloak OIDC token flow. Spring Security's OAuth2 Resource Server reads `ROLE_*` claims from the Keycloak token; the frontend redirects to Keycloak for login. Supports SAML federation with enterprise identity providers (AD, LDAP). |
+| **Clerk** | Drop-in hosted auth with prebuilt login/register UI components. The current `AuthController` and `JwtUtil` are replaced by Clerk's JWT verification middleware. Adds social login (Google, GitHub, Microsoft) with zero extra code. |
+| **Okta / Auth0** | OIDC/OAuth2 integration via Spring Security's `oauth2-resource-server` starter. Supports enterprise SSO, MFA enforcement, device trust policies, and centralised session management. |
+
+### Security
+
+| Upgrade | What changes |
+|---------|-------------|
+| **Encryption of private prompt bodies** | Private prompts encrypted at rest using AES-256-GCM with a per-user derived key (PBKDF2 or a KMS-managed key). The `Prompt.body` column stores ciphertext; decryption happens in the service layer before returning to the client. Public prompts remain plaintext. |
+| **Audit logging** | Append-only `audit_events` table capturing all write operations (create, edit, delete, flag, unflag, user toggle) with actor, timestamp, and before/after diff. Admin audit trail page. |
+
+### Features
+
+| Feature | Description |
+|---------|-------------|
+| **Prompt versioning** | Every save snapshots the previous version. Users can browse version history, diff two versions side by side, and roll back to any prior state. Essential for teams doing iterative prompt engineering where accidental edits lose good work. |
+| **Prompt templates with variables** | Parameterise prompts with `{{variable_name}}` placeholders. At submit time, a modal asks for values and substitutes them before sending. Turns a one-off prompt into a reusable tool — e.g. `Summarise {{document}} in {{tone}} tone for {{audience}}`. |
+| **Team workspaces** | Invite team members into a named workspace. Prompts can be scoped as personal, workspace-shared, or platform-public. Workspace admins manage membership and category lists independently. Removes the current single-tenant limitation for multi-team organisations. |
+| **Response quality rating** | After an AI submission, users rate the response 1–5 stars and leave an optional note. Ratings surface in the AI History view, and a per-prompt effectiveness score aggregates ratings over time. Helps users identify which prompt formulations consistently produce good outputs. |
+| **Prompt chaining / pipelines** | Link prompts into an ordered sequence where the AI response from step N is automatically injected into the body of step N+1. Define reusable multi-step workflows (e.g. draft → critique → revise). Each step records its own submission history entry. |
+| **Developer API access** | Issue personal API keys from the user settings page. Developers can create, submit, and retrieve prompts programmatically without the browser UI. Full OpenAPI specification included. Enables integration with CI/CD pipelines, Slack bots, or internal tooling. |
+| **Bulk export and import** | Export all owned prompts (or a filtered subset) as a JSON or CSV archive. Import from the same format — or from compatible formats exported by tools like PromptLayer or LangSmith. Useful for migrating between environments or backing up prompt libraries. |
+
+---
+
+> **Interested in any of these upgrades?**
+> Get in touch for a scoping call and quote: [subhro.moitra.freelancer@gmail.com](mailto:subhro.moitra.freelancer@gmail.com)

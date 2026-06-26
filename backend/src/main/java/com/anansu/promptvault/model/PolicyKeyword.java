@@ -1,0 +1,25 @@
+package com.anansu.promptvault.model;
+
+import jakarta.persistence.*;
+import lombok.*;
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "policy_keywords")
+@Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
+public class PolicyKeyword {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false, unique = true, length = 100)
+    private String keyword;
+
+    private LocalDateTime createdAt;
+
+    @PrePersist
+    void prePersist() {
+        createdAt = LocalDateTime.now();
+    }
+}

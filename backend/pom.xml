@@ -11,7 +11,7 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.promptvault</groupId>
+    <groupId>com.anansu.promptvault</groupId>
     <artifactId>promptvault-backend</artifactId>
     <version>1.0.0</version>
     <name>promptvault-backend</name>
