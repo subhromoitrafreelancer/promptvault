@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Prompt — PromptVault</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+<div id="navbar-container"></div>
+<section class="section">
+    <div class="container" style="max-width:720px">
+        <div id="flash"></div>
+        <h1 class="pv-section-title" id="formTitle">New Prompt</h1>
+
+        <div id="policyWarning" style="display:none" class="notification pv-policy-warning mb-4">
+            <span class="pv-policy-dot"></span>
+            <strong>Policy warning:</strong> This prompt contains sensitive keywords: <span id="matchedKeywords"></span>
+        </div>
+
+        <form id="promptForm">
+            <div class="field">
+                <label class="label">Title <span style="color:#EF4444">*</span></label>
+                <div class="control">
+                    <input class="input" type="text" id="title" placeholder="Give your prompt a clear title" required maxlength="255">
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Prompt body <span style="color:#EF4444">*</span></label>
+                <div class="control">
+                    <textarea class="textarea pv-prompt-body" id="body" rows="8"
+                        placeholder="Write your prompt here..." required></textarea>
+                </div>
+                <p class="help">Policy scan runs automatically as you type.</p>
+            </div>
+
+            <div class="columns">
+                <div class="column">
+                    <div class="field">
+                        <label class="label">Category</label>
+                        <div class="control">
+                            <div class="select is-fullwidth">
+                                <select id="categoryId">
+                                    <option value="">— None —</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="field">
+                        <label class="label">Visibility</label>
+                        <div class="control">
+                            <label class="radio mr-4">
+                                <input type="radio" name="visibility" value="PRIVATE" checked> Private
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="visibility" value="PUBLIC"> Public
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field is-grouped mt-4">
+                <div class="control">
+                    <button type="submit" class="button is-primary" id="submitBtn">Save prompt</button>
+                </div>
+                <div class="control">
+                    <a href="/my-prompts.html" class="button is-light">Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/api.js"></script>
+<script src="/js/nav.js"></script>
+<script src="/js/prompt-form.js"></script>
+</body>
+</html>

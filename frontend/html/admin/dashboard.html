@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin — PromptVault</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+<div id="navbar-container"></div>
+<section class="section">
+    <div class="container">
+        <div id="flash"></div>
+        <h1 class="pv-section-title">Admin Dashboard</h1>
+
+        <!-- Stats strip -->
+        <div class="columns is-multiline mb-5">
+            <div class="column is-3-desktop is-6-tablet">
+                <div class="pv-stat-card">
+                    <div class="pv-stat-value" id="statUsers">—</div>
+                    <div class="pv-stat-label">Users</div>
+                </div>
+            </div>
+            <div class="column is-3-desktop is-6-tablet">
+                <div class="pv-stat-card">
+                    <div class="pv-stat-value" id="statPrompts">—</div>
+                    <div class="pv-stat-label">Prompts</div>
+                </div>
+            </div>
+            <div class="column is-3-desktop is-6-tablet">
+                <div class="pv-stat-card">
+                    <div class="pv-stat-value" id="statFlagged" style="color:#F59E0B">—</div>
+                    <div class="pv-stat-label">Active Flags</div>
+                </div>
+            </div>
+            <div class="column is-3-desktop is-6-tablet">
+                <div class="pv-stat-card">
+                    <div class="pv-stat-value" id="statKeywords">—</div>
+                    <div class="pv-stat-label">Policy Keywords</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nav cards -->
+        <p class="mb-4" style="font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:#9CA3AF">
+            Management
+        </p>
+        <div class="columns is-multiline">
+            <div class="column is-3-desktop is-6-tablet">
+                <a href="/admin/users.html" class="pv-card">
+                    <div class="pv-card-icon">👥</div>
+                    <div class="pv-card-title">Users</div>
+                    <div class="pv-card-desc">Enable or disable accounts</div>
+                </a>
+            </div>
+            <div class="column is-3-desktop is-6-tablet">
+                <a href="/admin/categories.html" class="pv-card">
+                    <div class="pv-card-icon">🗂</div>
+                    <div class="pv-card-title">Categories</div>
+                    <div class="pv-card-desc">Add, edit, and delete categories</div>
+                </a>
+            </div>
+            <div class="column is-3-desktop is-6-tablet">
+                <a href="/admin/keywords.html" class="pv-card">
+                    <div class="pv-card-icon">🔑</div>
+                    <div class="pv-card-title">Policy Keywords</div>
+                    <div class="pv-card-desc">Manage sensitive keyword rules</div>
+                </a>
+            </div>
+            <div class="column is-3-desktop is-6-tablet">
+                <a href="/admin/flagged.html" class="pv-card">
+                    <div class="pv-card-icon">⚠️</div>
+                    <div class="pv-card-title">Flagged Prompts</div>
+                    <div class="pv-card-desc">Review policy violations</div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/api.js"></script>
+<script src="/js/nav.js"></script>
+<script src="/js/admin/dashboard.js"></script>
+</body>
+</html>

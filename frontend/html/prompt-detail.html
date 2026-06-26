@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Prompt — PromptVault</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+<div id="navbar-container"></div>
+
+<section class="section">
+    <div class="container" style="max-width:760px">
+        <div id="flash"></div>
+
+        <a href="#" onclick="history.back();return false;"
+           style="font-size:0.88rem;color:#6B7280;display:inline-flex;align-items:center;gap:0.35rem;margin-bottom:1.5rem">
+            &#8592; Back
+        </a>
+
+        <!-- Loaded by JS -->
+        <div id="detailContent" style="display:none">
+
+            <div class="is-flex is-justify-content-space-between is-align-items-flex-start is-flex-wrap-wrap mb-2" style="gap:0.75rem">
+                <h1 class="pv-section-title mb-0" id="promptTitle" style="flex:1;min-width:0"></h1>
+                <!-- Action bar — rendered by JS if owner -->
+                <div id="actionBar" class="buttons" style="flex-shrink:0"></div>
+            </div>
+
+            <!-- Meta strip -->
+            <div class="is-flex is-flex-wrap-wrap mb-4" id="metaStrip"
+                 style="gap:1.25rem;font-size:0.82rem;color:#6B7280;align-items:center"></div>
+
+            <!-- Policy warning (flagged only) -->
+            <div id="flaggedWarning" style="display:none" class="notification pv-policy-warning mb-4">
+                <span class="pv-policy-dot"></span>
+                <strong>Policy warning:</strong> this prompt was flagged for containing sensitive keywords.
+            </div>
+
+            <!-- Full prompt body -->
+            <div class="pv-prompt-body-full" id="promptBody" style="margin-bottom:1.5rem"></div>
+
+            <!-- AI response — shown after submit -->
+            <div id="aiSection" style="display:none">
+                <h2 class="subtitle is-6 mb-2" style="color:#1B1F3B;font-weight:700;border-top:1px solid #E5E7EB;padding-top:1.25rem">
+                    AI Response
+                </h2>
+                <div id="aiWarning"></div>
+                <div class="pv-ai-response" id="aiResponseText"></div>
+            </div>
+
+        </div>
+
+        <!-- Error state -->
+        <div id="errorState" style="display:none">
+            <div class="notification is-danger is-light">
+                <strong>Access denied.</strong> This prompt is private.
+            </div>
+        </div>
+
+        <!-- Loading skeleton -->
+        <div id="loadingState">
+            <div class="pv-empty"><p style="color:#6B7280">Loading…</p></div>
+        </div>
+    </div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/api.js"></script>
+<script src="/js/nav.js"></script>
+<script src="/js/prompt-detail.js"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+# Maven build output
+backend/target/
+
+# H2 database files (local dev; Docker uses a named volume)
+backend/data/
+*.db
+*.mv.db
+*.trace.db
+
+# IDE
+.idea/
+*.iml
+.vscode/
+*.code-workspace
+.project
+.classpath
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment / secrets
+.env
+.env.*
+*.pem
+*.key
+
+# JVM crash logs
+hs_err_pid*
+replay_pid*
+
+# Maven wrapper (keep mvnw if present, ignore downloaded cache)
+.mvn/repository/

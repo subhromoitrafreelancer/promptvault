@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard — PromptVault</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+<div id="navbar-container"></div>
+<section class="section">
+    <div class="container">
+        <div id="flash"></div>
+        <h1 class="pv-section-title" id="welcomeMsg">Welcome back</h1>
+        <p class="mb-5" style="color:#6B7280;font-size:0.9rem">What would you like to do today?</p>
+        <div class="columns is-multiline">
+            <div class="column is-4-desktop is-6-tablet">
+                <a href="/my-prompts.html" class="pv-card">
+                    <div class="pv-card-icon">✏️</div>
+                    <div class="pv-card-title">My Prompts</div>
+                    <div class="pv-card-desc">Create, edit, and manage your prompts</div>
+                </a>
+            </div>
+            <div class="column is-4-desktop is-6-tablet">
+                <a href="/shared.html" class="pv-card">
+                    <div class="pv-card-icon">🌐</div>
+                    <div class="pv-card-title">Browse Shared</div>
+                    <div class="pv-card-desc">Explore public prompts from the community</div>
+                </a>
+            </div>
+            <div class="column is-4-desktop is-6-tablet">
+                <a href="/history.html" class="pv-card">
+                    <div class="pv-card-icon">🤖</div>
+                    <div class="pv-card-title">AI History</div>
+                    <div class="pv-card-desc">Review your past AI submissions</div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/api.js"></script>
+<script src="/js/nav.js"></script>
+<script src="/js/dashboard.js"></script>
+</body>
+</html>

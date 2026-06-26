@@ -1,0 +1,353 @@
+/* PromptVault — custom theme
+   Palette: navy navbar, violet primary, amber flagged state
+   Signature: amber animated dot on policy warnings
+*/
+
+:root {
+    --pv-primary:       #5B4FCF;
+    --pv-primary-dark:  #4A3FBE;
+    --pv-primary-light: #EDE9FE;
+    --pv-navy:          #1B1F3B;
+    --pv-amber:         #F59E0B;
+    --pv-amber-light:   #FEF3C7;
+    --pv-surface:       #F7F8FF;
+    --pv-muted:         #6B7280;
+    --pv-border:        #E5E7EB;
+}
+
+/* --- Base --- */
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: #FAFBFF;
+    color: #1F2937;
+}
+
+/* --- Navbar --- */
+#navbar-container .navbar {
+    background-color: var(--pv-navy) !important;
+    border-bottom: 2px solid var(--pv-primary);
+}
+
+#navbar-container .navbar-item,
+#navbar-container .navbar-link {
+    color: rgba(255, 255, 255, 0.78) !important;
+    font-size: 0.9rem;
+}
+
+#navbar-container .navbar-item:hover,
+#navbar-container .navbar-item.is-active {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    color: #fff !important;
+}
+
+#navbar-container .navbar-burger span {
+    background-color: #fff !important;
+}
+
+.pv-brand {
+    font-weight: 800;
+    font-size: 1.15rem !important;
+    letter-spacing: -0.5px;
+    color: #fff !important;
+}
+
+.pv-nav-user {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 500;
+    padding-right: 0;
+}
+
+/* --- Primary button overrides --- */
+.button.is-primary {
+    background-color: var(--pv-primary) !important;
+    border-color: transparent !important;
+    color: #fff !important;
+}
+.button.is-primary:hover,
+.button.is-primary:focus {
+    background-color: var(--pv-primary-dark) !important;
+}
+.button.is-primary.is-light {
+    background-color: var(--pv-primary-light) !important;
+    color: var(--pv-primary) !important;
+}
+
+/* --- Section title with left accent --- */
+.pv-section-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--pv-navy);
+    border-left: 3px solid var(--pv-primary);
+    padding-left: 0.75rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+}
+
+/* --- Table --- */
+.table th {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--pv-muted);
+    border-bottom: 2px solid var(--pv-border) !important;
+}
+
+tr.pv-flagged-row > td:first-child {
+    border-left: 3px solid var(--pv-amber);
+}
+
+/* --- Badges --- */
+.pv-badge {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 0.2rem 0.55rem;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+.pv-badge-flagged {
+    background-color: var(--pv-amber);
+    color: #fff;
+}
+
+.pv-badge-public {
+    background-color: #D1FAE5;
+    color: #059669;
+}
+
+.pv-badge-private {
+    background-color: #F3F4F6;
+    color: #6B7280;
+}
+
+.pv-badge-admin {
+    background-color: var(--pv-primary-light);
+    color: var(--pv-primary);
+}
+
+.pv-badge-enabled {
+    background-color: #D1FAE5;
+    color: #059669;
+}
+
+.pv-badge-disabled {
+    background-color: #FEE2E2;
+    color: #DC2626;
+}
+
+/* --- Policy warning — signature amber bar --- */
+.pv-policy-warning {
+    background-color: var(--pv-amber-light) !important;
+    border-left: 4px solid var(--pv-amber) !important;
+    border-radius: 0 6px 6px 0 !important;
+    color: #92400E !important;
+    padding: 0.85rem 1.25rem !important;
+}
+
+/* Animated amber dot — signature element */
+@keyframes pv-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.4; transform: scale(0.85); }
+}
+
+.pv-policy-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--pv-amber);
+    animation: pv-pulse 1.4s ease-in-out infinite;
+    margin-right: 7px;
+    vertical-align: middle;
+}
+
+/* --- Prompt body preview (monospace) --- */
+.pv-prompt-body {
+    font-family: 'JetBrains Mono', 'Cascadia Code', 'Fira Mono', 'Courier New', monospace;
+    font-size: 0.82rem;
+    line-height: 1.65;
+    background-color: var(--pv-surface);
+    border: 1px solid var(--pv-border);
+    border-radius: 4px;
+    padding: 0.75rem 1rem;
+    white-space: pre-wrap;
+    word-break: break-word;
+    max-height: 220px;
+    overflow-y: auto;
+}
+
+/* --- Auth page --- */
+.pv-auth-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--pv-navy) 0%, #2D2B6B 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.pv-auth-box {
+    background: #fff;
+    border-radius: 10px;
+    padding: 2.5rem 2.25rem;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.35);
+}
+
+.pv-auth-logo {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #fff;
+    text-align: center;
+    letter-spacing: -1px;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+}
+
+.pv-auth-tagline {
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.55);
+    text-align: center;
+    margin-bottom: 2.25rem;
+}
+
+.pv-auth-box .label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--pv-navy);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+/* --- Dashboard stat cards --- */
+.pv-card {
+    background: #fff;
+    border: 1px solid var(--pv-border);
+    border-radius: 10px;
+    padding: 1.75rem 1.5rem;
+    text-align: center;
+    text-decoration: none !important;
+    display: block;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    color: inherit !important;
+}
+
+.pv-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(91, 79, 207, 0.14);
+}
+
+.pv-card-icon { font-size: 2.25rem; margin-bottom: 0.6rem; }
+.pv-card-title { font-size: 1rem; font-weight: 700; color: var(--pv-navy); margin-bottom: 0.25rem; }
+.pv-card-desc  { font-size: 0.82rem; color: var(--pv-muted); }
+
+/* --- Empty state --- */
+.pv-empty {
+    text-align: center;
+    padding: 3.5rem 1rem;
+    color: var(--pv-muted);
+}
+.pv-empty-icon { font-size: 3rem; margin-bottom: 0.75rem; opacity: 0.35; }
+.pv-empty p    { font-size: 0.9rem; }
+
+/* --- AI response modal --- */
+.pv-ai-response {
+    background-color: var(--pv-surface);
+    border-left: 3px solid var(--pv-primary);
+    border-radius: 0 6px 6px 0;
+    padding: 1rem 1.25rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #1F2937;
+}
+
+/* --- Inline form for admin CRUD --- */
+.pv-inline-form {
+    background: var(--pv-surface);
+    border: 1px solid var(--pv-border);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* --- Clickable title links in tables --- */
+.pv-title-link {
+    color: var(--pv-primary);
+    font-weight: 600;
+    text-decoration: none;
+}
+.pv-title-link:hover {
+    color: var(--pv-primary-dark);
+    text-decoration: underline;
+}
+
+/* --- Clickable rows (shared / browse pages — no action buttons) --- */
+tr.pv-row-link {
+    cursor: pointer;
+}
+tr.pv-row-link:hover > td {
+    background-color: var(--pv-primary-light) !important;
+}
+
+/* --- Full-height prompt body on detail page --- */
+.pv-prompt-body-full {
+    font-family: 'JetBrains Mono', 'Cascadia Code', 'Fira Mono', 'Courier New', monospace;
+    font-size: 0.82rem;
+    line-height: 1.65;
+    background-color: var(--pv-surface);
+    border: 1px solid var(--pv-border);
+    border-radius: 4px;
+    padding: 0.75rem 1rem;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/* --- Pagination spacing --- */
+.pagination { margin-top: 1.25rem; }
+
+/* --- Admin stat cards --- */
+.pv-stat-card {
+    background: #fff;
+    border: 1px solid var(--pv-border);
+    border-radius: 8px;
+    padding: 1.25rem 1rem;
+    text-align: center;
+}
+.pv-stat-value {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--pv-primary);
+    line-height: 1;
+    margin-bottom: 0.35rem;
+}
+.pv-stat-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--pv-muted);
+}
+
+/* --- Flash / notifications --- */
+#flash { min-height: 0; }
+#flash .notification { margin-bottom: 1rem; }
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .section { padding: 1.25rem 1rem; }
+    .table-container { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .pv-auth-box { padding: 2rem 1.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pv-policy-dot { animation: none; opacity: 0.8; }
+    .pv-card { transition: none; }
+}
